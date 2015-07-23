@@ -1,0 +1,46 @@
+<!doctype html>
+<!--[if IE 9]><html class="no-js lt-ie10" lang="en"><![endif]-->
+<!--[if gt IE 9]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Clarify.io API Demo</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <base target="_blank">
+</head>
+
+<body>
+
+<main>
+  <div class="field-group">
+    <input type="text" id="yt-url" placeholder="Paster URL here..."/>
+    <button id="yt-button">Get Source URL</button>
+  </div>
+  <div id="results"></div>
+</main>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="./youtube-source.js"></script>
+<script>
+    $(document).ready(function () {
+      $('#yt-button').on('click', function () {
+        var url = $('#yt-url').val();
+
+        if (url) {
+          var YT = new YouTubeMedia(url);
+
+          YT.getSource().done(function (src) {
+            $('#results').text('name: ' + src.name + ', url: ' +src.url);
+          });
+        } else {
+          alert('Enter a valid YouTube URL');
+        }
+      })
+    });
+</script>
+</body>
+</html>
